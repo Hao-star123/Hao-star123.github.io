@@ -6563,9 +6563,7 @@ blockquote.pullquote.right {
     height: 18px;
     margin-right: 0.5rem;
   }
-  .icon-pos-mid {
-    background: url(https://img02.anzhiy.cn/adminuploads/1/2022/09/25/632fb9cecfc8c.png);
-  }
+
   .author-content-item.game-yuanshen::after {
     box-shadow: 0 -69px 203px 11px #575d8b inset;
     position: absolute;
@@ -6582,10 +6580,11 @@ blockquote.pullquote.right {
     background-size: cover;
     min-height: 300px;
     overflow: hidden;
-    color: rgb(225, 153, 225);
+    color: rgb(255, 255, 255);/*番名颜色*/
   }
+
   .author-content-item.comic-content::after {
-    box-shadow: 0 -48px 203px 11px #fbe9b8 inset;
+    box-shadow: 0 -48px 203px 11px #d8fbff inset;/*番剧蒙版颜色*/
     position: absolute;
     content: "";
     width: 100%;
@@ -6616,7 +6615,7 @@ blockquote.pullquote.right {
   }
   
   .author-content-item.like-music::after {
-    box-shadow: 0 -69px 203px 11px #453e38 inset;
+    box-shadow: 0 -69px 203px 11px #453845 inset;
     position: absolute;
     content: "";
     width: 100%;
