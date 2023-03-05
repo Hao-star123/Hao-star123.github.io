@@ -1678,7 +1678,7 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: 14px;
-  font-family: SmileySans,Consolas, var(--global-font), "Microsoft YaHei", Menlo, "PingFang SC", "Microsoft JhengHei", sans-serif !important;
+  font-family: Consolas,CascadiaCode-Bold, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", SmileySans,sans-serif !important;
 }
 #article-container code {
   padding: 2px 4px;
