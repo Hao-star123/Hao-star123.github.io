@@ -318,33 +318,6 @@
     
     
     <entry>
-      <title>C指针与地址</title>
-      <link href="/2023/01/29/C%E6%8C%87%E9%92%88%E4%B8%8E%E5%9C%B0%E5%9D%80/"/>
-      <url>/2023/01/29/C%E6%8C%87%E9%92%88%E4%B8%8E%E5%9C%B0%E5%9D%80/</url>
-      
-        <content type="html"><![CDATA[<h1 id="c指针与地址"><a class="markdownIt-Anchor" href="#c指针与地址"></a> C指针与地址</h1><blockquote><p>在C语言的学习过程中，常理不清指针（即一个变量的地址）和指针变量（专门用来存放另一变量的地址(指针)的变量）的关系，因此通过程序打印地址运行结果，来分析加强理解。以此记录学习过程中的心得，希望能帮到大家，感谢指正。</p></blockquote><h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2><h3 id="一-代码示例"><a class="markdownIt-Anchor" href="#一-代码示例"></a> 一、代码示例</h3><p>代码如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">88</span>,b=<span class="number">60</span> ;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p=&amp;a;<span class="comment">//指向a的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>,&amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#p&quot;</span>,p);<span class="comment">//以十六进制的形式输出</span></span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %p &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %p\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %d &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %d\n&quot;</span>,&amp;p);</span><br><span class="line">    p--;<span class="comment">//指针移动指向b的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>,&amp;b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#p&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %p &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %p\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %d &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %d\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2运行结果"><a class="markdownIt-Anchor" href="#2运行结果"></a> 2.运行结果</h3><p>代码如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">000000000061F</span>E1C</span><br><span class="line"><span class="number">0X000000000061FE1C</span> <span class="number">0000000000000058</span>  <span class="number">000000000061F</span>E10</span><br><span class="line"><span class="number">6422044</span> <span class="number">88</span>  <span class="number">6422032</span></span><br><span class="line"><span class="number">000000000061F</span>E18</span><br><span class="line"><span class="number">0X000000000061FE18</span> <span class="number">000000000000003</span>C  <span class="number">000000000061F</span>E10</span><br><span class="line"><span class="number">6422040</span> <span class="number">60</span>  <span class="number">6422032</span></span><br></pre></td></tr></table></figure><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2><p>在指针*p=&amp;a初始化后，p等同于&amp;a即a的地址，在运行过程中可以代换。%#p是输出位0X开开头的16进制数。因此printf(“%p\n”,&amp;a);    printf(“%#p”,p);本质是一样的。*p则是通过指针变量p存储的a的地址，间接获取a的值。*p=a,对数值%p等同于对数值以十六进制位输出。%d对p,*p,&amp;p则是以十进制形式分别输出地址，值，地址。</p><p>p–，由于p是整型指针，p–减去int的4个字节刚好移动到b。</p><blockquote><p>【注】1.这里发现后定义的变量b的地址要小于a的地址，这是因为c语言中，先定义的数据先入栈，在栈的底部（不分配内存），声明结束后，b在栈顶，所以b先出栈，先为b分配内存。因此b的地址小于a的地址。<br />   2.数据的地址位数和数据能存储的位数无关。学习阶段曾存在疑问（输出的地址是16位，int是4字节，即16进制的4位代表一个字节（实际应该是一个字节等于2位16进制），一个字节等于八位二进制，但八位二进制不等于四位16进制？）通过交流请教得知有关计算机组成原理，地址位数只取决于系统，所有类型的指针所占长度相同。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习相关 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C </tag>
-            
-            <tag> 指针 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>指针知识框架（详解）</title>
       <link href="/2023/01/29/%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6%EF%BC%88%E8%AF%A6%E8%A7%A3%EF%BC%89/"/>
       <url>/2023/01/29/%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6%EF%BC%88%E8%AF%A6%E8%A7%A3%EF%BC%89/</url>
@@ -391,6 +364,33 @@
             <tag> 总结整理 </tag>
             
             <tag> 算法入门 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C指针与地址</title>
+      <link href="/2023/01/29/C%E6%8C%87%E9%92%88%E4%B8%8E%E5%9C%B0%E5%9D%80/"/>
+      <url>/2023/01/29/C%E6%8C%87%E9%92%88%E4%B8%8E%E5%9C%B0%E5%9D%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="c指针与地址"><a class="markdownIt-Anchor" href="#c指针与地址"></a> C指针与地址</h1><blockquote><p>在C语言的学习过程中，常理不清指针（即一个变量的地址）和指针变量（专门用来存放另一变量的地址(指针)的变量）的关系，因此通过程序打印地址运行结果，来分析加强理解。以此记录学习过程中的心得，希望能帮到大家，感谢指正。</p></blockquote><h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2><h3 id="一-代码示例"><a class="markdownIt-Anchor" href="#一-代码示例"></a> 一、代码示例</h3><p>代码如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">88</span>,b=<span class="number">60</span> ;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p=&amp;a;<span class="comment">//指向a的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>,&amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#p&quot;</span>,p);<span class="comment">//以十六进制的形式输出</span></span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %p &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %p\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %d &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %d\n&quot;</span>,&amp;p);</span><br><span class="line">    p--;<span class="comment">//指针移动指向b的地址</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>,&amp;b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#p&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %p &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %p\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot; %d &quot;</span>,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %d\n&quot;</span>,&amp;p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2运行结果"><a class="markdownIt-Anchor" href="#2运行结果"></a> 2.运行结果</h3><p>代码如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">000000000061F</span>E1C</span><br><span class="line"><span class="number">0X000000000061FE1C</span> <span class="number">0000000000000058</span>  <span class="number">000000000061F</span>E10</span><br><span class="line"><span class="number">6422044</span> <span class="number">88</span>  <span class="number">6422032</span></span><br><span class="line"><span class="number">000000000061F</span>E18</span><br><span class="line"><span class="number">0X000000000061FE18</span> <span class="number">000000000000003</span>C  <span class="number">000000000061F</span>E10</span><br><span class="line"><span class="number">6422040</span> <span class="number">60</span>  <span class="number">6422032</span></span><br></pre></td></tr></table></figure><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2><p>在指针*p=&amp;a初始化后，p等同于&amp;a即a的地址，在运行过程中可以代换。%#p是输出位0X开开头的16进制数。因此printf(“%p\n”,&amp;a);    printf(“%#p”,p);本质是一样的。*p则是通过指针变量p存储的a的地址，间接获取a的值。*p=a,对数值%p等同于对数值以十六进制位输出。%d对p,*p,&amp;p则是以十进制形式分别输出地址，值，地址。</p><p>p–，由于p是整型指针，p–减去int的4个字节刚好移动到b。</p><blockquote><p>【注】1.这里发现后定义的变量b的地址要小于a的地址，这是因为c语言中，先定义的数据先入栈，在栈的底部（不分配内存），声明结束后，b在栈顶，所以b先出栈，先为b分配内存。因此b的地址小于a的地址。<br />   2.数据的地址位数和数据能存储的位数无关。学习阶段曾存在疑问（输出的地址是16位，int是4字节，即16进制的4位代表一个字节（实际应该是一个字节等于2位16进制），一个字节等于八位二进制，但八位二进制不等于四位16进制？）通过交流请教得知有关计算机组成原理，地址位数只取决于系统，所有类型的指针所占长度相同。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C </tag>
+            
+            <tag> 指针 </tag>
             
         </tags>
       

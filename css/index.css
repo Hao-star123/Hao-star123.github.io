@@ -5904,9 +5904,9 @@ blockquote.pullquote.right {
   
   #page:has(#about-page) {
     border: 0;
-    box-shadow: none !important;
-    padding: 0 !important;
-    background: transparent !important;
+    box-shadow: 0 8px 16px -4px #2c2d300c !important;
+    padding: 1px solid #e3e8f7 !important;
+    background: rgba(245,245,245,0.9) !important;
   }
   
   #page:has(#about-page) .page-title {

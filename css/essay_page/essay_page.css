@@ -2,7 +2,7 @@
     border: 0;
     box-shadow: none !important;
     padding: 0 !important;
-    background: transparent !important;
+    background: rgba(245,245,245,0.9) !important;
   }
   #page:has(#essay_page) .page-title {
     display: none;
