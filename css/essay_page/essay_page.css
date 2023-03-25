@@ -34,7 +34,8 @@
     overflow: hidden;
     display: flex;
     position: relative;
-    width: calc(100% / 4 - 5px);
+    width: 100%;
+    /* width: calc(100% / 4 - 5px);*/
     margin-bottom: 10px;
   }
   
