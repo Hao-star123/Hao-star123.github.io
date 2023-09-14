@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>C++学习笔记</title>
+      <link href="/2023/09/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-copy/"/>
+      <url>/2023/09/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-copy/</url>
+      
+        <content type="html"><![CDATA[<hr /><h2 id="theme-v-green"><a class="markdownIt-Anchor" href="#theme-v-green"></a> theme: v-green</h2><h1 id="第一章从c到c"><a class="markdownIt-Anchor" href="#第一章从c到c"></a> 第一章从C到C++</h1><h2 id="类和对象的基本概念与用法1"><a class="markdownIt-Anchor" href="#类和对象的基本概念与用法1"></a> 类和对象的基本概念与用法(1)</h2><blockquote><p>对象的内存分配：成员函数不被包括在对象的内存吗？</p></blockquote><h2 id="类和对象的基本概念2"><a class="markdownIt-Anchor" href="#类和对象的基本概念2"></a> 类和对象的基本概念(2)</h2><blockquote><p>question1</p></blockquote><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设A是一个类的名字，下面的程序片段会调用类A的析构函数几次？ 答案：3次</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">A * p = <span class="keyword">new</span> A[<span class="number">2</span>];</span><br><span class="line">A * p2 = <span class="keyword">new</span> A;</span><br><span class="line">A a;</span><br><span class="line"><span class="keyword">delete</span> [] p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>不能访问私有成员变量？</p></blockquote><h2 id="2-构造函数"><a class="markdownIt-Anchor" href="#2-构造函数"></a> 2. 构造函数</h2><blockquote><p>对象所占用的存储空间是不是也是构造函数分配的？</p><p>answer：对象函数是在对象已经占用存储空间以后，在对象存储空间中做初始化的操作</p></blockquote><blockquote><p>对象一定有构造函数，如果定义类的时候没有写构造函数，则编译器生成个默认的无参数的构造函数</p><ul><li>默认构造函数无参数，不做任何操作</li></ul></blockquote><p>构造函数在数组中的使用</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">Test</span>( <span class="type">int</span> n)&#123;&#125;<span class="comment">//(1)</span></span><br><span class="line">        <span class="built_in">Test</span>( <span class="type">int</span> n, <span class="type">int</span> m) &#123;&#125;<span class="comment">//(2)</span></span><br><span class="line">        <span class="built_in">Test</span>()&#123;&#125;<span class="comment">//(3)</span></span><br><span class="line">&#125;;</span><br><span class="line">Test array1[<span class="number">3</span>]= &#123; <span class="number">1</span>, <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>)&#125;;<span class="comment">//三个元素分别用(1),(2),(3)初始化</span></span><br><span class="line">Test array2[<span class="number">3</span>]= &#123; <span class="built_in">Test</span>(<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>),<span class="number">1</span>&#125;;(/三个元素分别用(<span class="number">2</span>),(<span class="number">2</span>), (<span class="number">1</span>)初始化</span><br><span class="line">Test * pArray[<span class="number">3</span>]= &#123; <span class="keyword">new</span> <span class="built_in">Test</span>(<span class="number">4</span>), <span class="keyword">new</span> <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>)&#125;<span class="comment">//两个元素分别用(1),(2)初始化</span></span><br></pre></td></tr></table></figure><p>对于代码中的 <code>Test array1[3] = &#123;1, Test(1,2)&#125;</code>，它创建了一个名为 <code>array1</code> 的 <code>Test</code> 类型的数组，并初始化了其中的元素。</p><p><code>Test(1,2)</code> 是以参数值 <code>1</code> 和 <code>2</code> 调用 <code>Test</code> 类的构造函数 <code>(2)</code> 来创建一个临时对象。这个临时对象将被用来初始化 <code>array1</code> 中的第二个元素。</p><p>因此，<code>Test(1,2)</code> 将调用 <code>(2)</code> 构造函数，而不是其他的构造函数 <code>(1)</code> 或 <code>(3)</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机网络学习笔记</title>
       <link href="/2023/09/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/09/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
@@ -48,25 +73,6 @@
             <tag> 数据结构 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2023/08/31/hello-world/"/>
-      <url>/2023/08/31/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2><h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 博客相关 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -412,6 +418,25 @@
             <tag> 算法入门 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2022/12/13/hello-world/"/>
+      <url>/2022/12/13/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2><h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客相关 </category>
+          
+      </categories>
+      
       
     </entry>
     
